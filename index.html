@@ -452,6 +452,10 @@
          <div class="title1">DICIEMBRE</div>
         <a id="menu12" class="menu" href="#" onclick="ocultarMenu();showSection('opcion12'); resetActiveMenu(); resetActive(); setActive('opcion12'); fetchData('tablaL')"><i class="fas fa-tree"></i>  DECEMBER</a>
     </div>
+    <div class="opcion">
+         <div class="title1">PRESTAMOS</div>
+        <a id="menu13" class="menu" href="#" onclick="ocultarMenu();showSection('opcion13'); resetActiveMenu(); resetActive(); setActive('opcion13'); fetchData('tablaN')"><i class="fas fa-chart-line"></i>  LOANS</a>
+    </div>
 
 </div>
 <!--***************AREA DEL CONTENIDO*************** -->
@@ -563,6 +567,11 @@
         <p> MES: DIEMBRE/2025</p>
         <div id="dataL" class="tabla"></div>
     </div>
+    <div id="opcion13" class="section">
+        <h3>CUOTAS DEL CANASTON 2025</h3>
+        <p> TABLA DE PRESTAMOS E INTERESES</p>
+        <div id="dataN" class="tabla"></div>
+    </div>
 
     <div id="opcion5-1" class="section">
         <h3>CUOTAS DEL CANASTON 2025</h3>
@@ -661,7 +670,7 @@ function fetchData(option) {
         tablaK: 'NOV!A:C',
         tablaL: 'DEC!A:C',
         tablaM: 'SUMMARY!A:C',
-        tablaN: '',
+        tablaN: 'PRESTAMOS!A3:O1002',
         tablaO: '',
         tablaP: '',
         tablaQ: '',
@@ -724,7 +733,7 @@ function showSection(sectionId) {
         section.style.display = 'none';
     });
     //***************OPCIONES A LAS QUE SE REQUIERE LOGIN PARA ACCEDER***************
-    if (['subsubopcion1-1-1', 'subsubopcion1-1-2', 'subsubopcion1-2-1', 'subsubopcion1-2-2', 'subsubopcion1-3-1', 'subsubopcion1-3-2', 'subseccion2a', 'subseccion2b', 'subseccion3a', 'subseccion3b', 'subseccion3c'].includes(sectionId) && !isLoggedIn) {
+    if (['opcion13'].includes(sectionId) && !isLoggedIn) {
         // Guardamos la última opción solicitada
         localStorage.setItem('lastRequestedSection', sectionId);
         
@@ -738,7 +747,7 @@ function showSection(sectionId) {
             event.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const range = 'USER&PASSWORD!E2:F1001'; 
+            const range = 'PRESTAMOS!A1:B2'; 
             try {
                 const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${range}?key=${API_KEY}`);
                 if (!response.ok) {
