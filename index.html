@@ -479,6 +479,11 @@
         <p> RESUMEN DE CUOTAS</p>
         <div class="card-container">
             <div class="card">
+                <span class="fas fa-store"  style="font-size: 50px ; filter:grayscale(80%)"></span>
+                <h1>TOTAL CANASTONES</h1>
+                <p id="Canastones-count">Cargando...</p>
+            </div>
+            <div class="card">
                 <span class="fas fa-money-bill"  style="font-size: 50px ; filter:grayscale(80%)"></span>
                 <span class="fas fa-arrow-up"  style="font-size: 50px ; filter:grayscale(80%)"></span>
                 <h1>TOTAL EFECTIVO</h1>
@@ -819,7 +824,8 @@ function ocultarMenu() {
 const ranges = [
     { range: 'SUMMARY!D2', elementId: 'Efectivo-count' },
     { range: 'SUMMARY!E2', elementId: 'Prestado-count' },
-    { range: 'SUMMARY!F2', elementId: 'Ganancias-count' }
+    { range: 'SUMMARY!F2', elementId: 'Ganancias-count' },
+    { range: 'SUMMARY!G2', elementId: 'Canastones-count' }
 ];
 
 function showCellValue(range, elementId) {
