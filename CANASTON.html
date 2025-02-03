@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puntos con Icono de Calendario y Línea Curva Animada</title>
+  <!-- Agregar Font Awesome para los íconos -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Estilos generales de la página */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      background-color: whitesmoke; /* Fondo gris oscuro */
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Estilos para los puntos */
+    .punto {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff; /* Color blanco para el texto */
+      background-color: #00aaff; /* Fondo celeste sólido para los puntos */
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 50%;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+      z-index: 10; /* Los puntos deben estar por encima de las líneas */
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    /* Efecto cuando pasas el mouse sobre los puntos */
+    .punto:hover {
+      transform: scale(1.2); /* Aumenta el tamaño al pasar el cursor */
+      box-shadow: 0 10px 25px rgba(0, 173, 255, 0.5); /* Sombra más fuerte */
+      background-color: #00c7ff; /* Fondo más claro al hacer hover */
+    }
+
+    .punto i {
+      font-size: 28px;
+      margin-right: 12px;
+      color: #fff; /* Íconos en blanco */
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .punto span {
+      font-size: 16px;
+      color: #fff; /* Texto blanco */
+      transition: color 0.3s ease;
+    }
+
+    .punto:hover i,
+    .punto:hover span {
+      color: #ff6f61; /* Color de cambio en hover */
+      transform: translateX(5px); /* Desplazamiento suave de los elementos */
+    }
+
+    /* Estilo para el canvas */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1; /* Las líneas deben estar por debajo de los puntos */
+    }
+
+  </style>
+</head>
+<body>
+
+  <canvas id="lineCanvas"></canvas>
+
+  <script>
+    // Nombres de los meses
+    const meses = [
+      "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ];
+
+    // Parámetros para la función seno
+    const amplitud = 100;  // Amplitud de la onda
+    const frecuencia = 0.05; // Frecuencia de la onda
+
+    // Array para almacenar las posiciones de los puntos
+    const puntos = [];
+
+    // Obtener el mes actual (0-11, por eso sumamos 1 para mostrarlo como 1-12)
+    const mesActual = new Date().getMonth(); // Devuelve el mes actual, 0 para Enero, 11 para Diciembre
+
+    // Función para generar los puntos siguiendo la función seno
+    function generarPuntos() {
+      const numeroPuntos = meses.length;
+      const espacioX = window.innerWidth / (numeroPuntos + 1);  // Espacio entre los puntos en el eje X
+
+      // Calcular las posiciones de los puntos
+      for (let i = 0; i < numeroPuntos; i++) {
+        const mes = meses[i];
+
+        // Calcular la posición X y Y usando la función seno
+        const posX = (i + 1) * espacioX;
+        const posY = window.innerHeight / 2 + amplitud * Math.sin(frecuencia * posX); // Aplicamos la función seno
+
+        // Crear el punto con ícono de calendario y nombre del mes
+        const punto = document.createElement("div");
+        punto.classList.add("punto");
+
+        // Crear el ícono de calendario con Font Awesome
+        const icono = document.createElement("i");
+        icono.classList.add("fas", "fa-calendar-day");
+
+        // Crear el texto con el nombre del mes
+        const texto = document.createElement("span");
+        texto.textContent = mes;
+
+        // Añadir el ícono y el texto al punto
+        punto.appendChild(icono);
+        punto.appendChild(texto);
+
+        // Ajustar las posiciones del punto
+        punto.style.left = `${posX - 50}px`; // Centrar el punto
+        punto.style.top = `${posY - 25}px`;  // Ajuste fino de la posición Y
+
+        // Guardar las posiciones de cada punto
+        puntos.push({ mes, x: posX, y: posY });
+
+        // Añadir el punto al body
+        document.body.appendChild(punto);
+      }
+
+      // Iniciar el dibujo de la línea animada
+      dibujarLineaAnimada();
+    }
+
+    // Función para dibujar la línea animada que conecta los puntos de forma secuencial
+    function dibujarLineaAnimada() {
+      const canvas = document.getElementById('lineCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Ajustar el tamaño del canvas al tamaño de la ventana
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#00c7ff"; // Color celeste más claro para las líneas
+      ctx.lineJoin = "round"; // Hacer la línea más suave
+      ctx.lineCap = "round";  // Hacer el final de la línea más suave
+
+      let indice = 0; // Para controlar el índice del punto que estamos uniendo
+      let progreso = 0; // Controla el progreso de la animación de la línea
+      let maxProgreso = 0.03; // Cuán rápido se conecta la línea (ajústalo para que sea más lento o rápido)
+
+      // Función que anima la línea, dibujando segmento por segmento
+      function animar() {
+        // No limpiamos el canvas, para que las líneas anteriores permanezcan visibles
+
+        // Modificar la animación para que solo conecte hasta el mes actual
+        const puntosLimite = mesActual + 1; // Agregamos 1 porque el mes actual es 0-indexado (enero = 0)
+        if (indice < puntosLimite - 1) {
+          const puntoInicial = puntos[indice];
+          const puntoFinal = puntos[indice + 1];
+
+          // Calcular el punto medio para la curva (curva de Bezier)
+          const controlX = (puntoInicial.x + puntoFinal.x) / 2;
+          const controlY = (puntoInicial.y + puntoFinal.y) / 2;
+
+          // Dibujar la curva Bezier entre los puntos
+          ctx.beginPath();
+          ctx.moveTo(puntoInicial.x, puntoInicial.y);
+
+          // Dibujar el trazo progresivamente
+          ctx.quadraticCurveTo(controlX, controlY, puntoFinal.x, puntoFinal.y);
+          ctx.stroke();
+
+          // Avanzar el índice para el siguiente punto si ya hemos completado el progreso
+          progreso += maxProgreso;  // Aumentar el progreso gradualmente
+          if (progreso >= 1) {
+            progreso = 0; // Resetear el progreso
+            indice++;
+          }
+
+          requestAnimationFrame(animar);
+        }
+      }
+
+      // Iniciar la animación
+      animar();
+    }
+
+    // Llamar la función para generar los puntos
+    generarPuntos();
+  </script>
+
+</body>
+</html>
