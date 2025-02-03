@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>CANASTON 2025 - ECOJET</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Corbel', sans-serif;
+    }
+    body {
+        margin: 0;
+        display: flex;
+        height: 100%;
+        color: #333;
+/*BUSCADOR*/
+    }
+    .search-container {
+        position: absolute;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 110px;
+    }
+    #display-search-container {
+        display: none;
+    }
+    #buscador {
+        width: 100%;
+        padding: 10px 40px 10px 10px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 25px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+    #buscador:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    }
+    .search-container i {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #aaa;
+        font-size: 16px;
+        pointer-events: none;
+    }
+/*IMAGENES DEL MENU LATERAL*/
+    .sidebar img {
+        max-width: 90%;
+        height: auto;
+        margin-bottom: 20px;
+        padding: 2px;
+        margin-top: 30px;
+    }
+/*MENU LATERAL*/
+    .sidebar {
+
+        min-width: 200px;
+        width: 200px;
+        background-color: #171717;
+        color: #f4f4f4;
+        min-height:150vh;
+        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5);
+        transition: width 0.3s;
+        text-align: center; 
+/*FORMATOS DE TEXTO DEL MENU LATERAL*/
+    }
+    .sidebar h1 {
+        font-size: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+        padding: 10px;
+        color: #3498db;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    .sidebar h2 {
+        text-align: center;
+        margin: 0 0 20px 0;
+        font-size: 18px;
+    }
+    .sidebar a {
+        text-decoration: none;
+        border-radius: 5px;
+        overflow: hidden;
+        padding: 15px 20px;
+        color: white;
+        text-align: left;
+        display: block;
+        transition: background-color 0.3s, padding-left 0.3s, box-shadow 0.3s;
+        position: relative;
+    }
+    .sidebar a:hover {
+        background-color: rgba(64,64,64, 0.8);
+        padding-left: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transform: translateX(5px);
+
+    }
+    .sidebar a.active {
+        background-color: rgba(64,64,64, 0.8);
+        padding-left: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transform: translateX(5px);
+        color:#F44336 ;
+    }
+
+    .sidebar a:hover::before {
+        transform: scale(1.05);
+    }
+/*OPCIONES DEL MENU LATERAL*/
+    .sidebar .submenu{
+        padding: 15px;
+        cursor: pointer;
+        border-bottom: 1px solid #444;
+    }
+    .menu {
+        padding: 15px 20px;
+        color: white;
+        display: flex;
+        transition: background-color 0.3s, padding-left 0.3s, box-shadow 0.3s;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .submenu {
+        display: none;
+        padding-left: 10px;
+        font-size: 14px;
+    }
+    .submenu a.active {
+        padding: 10px 20px;
+        background-color: rgba(112, 112, 112, 0.9);
+        color: #FFA500 ;
+    }
+    .submenu a::before {
+        margin-right: 10px;
+    }
+    .subsubmenu {
+        display: none;
+        padding-left: 10px;
+        font-size: 12px; 
+    }
+    .subsubmenu a::before {
+        padding: 5px 10px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .subsubmenu a.active {
+        padding: 10px 20px;
+        background-color: rgba(153,153,153, 0.9);
+        transition: background-color 0.3s, transform 0.3s;
+        color: #333333;
+    }
+/*AREA DEL CONTENIDO*/
+    .content {
+        display: flex;
+        padding: 40px;
+        width: 100%;
+        height: auto;
+        margin: 10px;
+        transition: margin-left 0.3s;
+/*BOTON OCULTA O MUESTRA MENU LATERAL*/
+    }
+    #toggle-btn {
+        position: absolute;
+        left: 15px;
+        top: 8px;
+        cursor: pointer;
+        color: #3498db;
+    }
+/*FORMATOS DE TEXTO DEL CONTENIDO*/
+    .content h3 {
+        font-size: 34px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #2c3e50; 
+    }
+    .content h2 {
+        font-size: 34px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #2c3e50; 
+    }
+    .content h1 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #2c3e50; 
+        text-align: center;
+    }
+    .content p {
+        font-size: 28px;
+        line-height: 1.6;
+        color: #34495e;
+    }
+    .content p1 {
+        font-size: 18px;
+        line-height: 1.6;
+        color: black;
+    }
+    .content img {
+        min-width: 100%;
+        max-height: 100%;
+    }
+/*PIE DE PAGINA CON COPYRIGHT*/
+    .footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #171717;
+        color: #ffffff;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 30px;
+        border-top: 2px solid #3498db;
+        font-size: 10px;
+    }
+/*LOGIN (USUARIO Y CONTRASEÑA)*/
+    .section, .login {
+        display: none;
+        width: 100%;
+        margin: 0;
+    }
+    .login {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        position: absolute;
+        display: flex;
+        margin-top: 10%;
+        margin-left: 20%;
+    }
+    .login input {
+        margin-bottom: 10px;
+        padding: 10px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin: 10px 0;
+    }
+    .login button {
+        padding: 10px;
+        background-color: #171717;
+        color: #f4f4f4;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        padding: 10px;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+    .login button:hover {
+        background-color: #ffcc00;
+    }
+    .error {
+        color: red;
+        text-align: center;
+    }
+/*OPCIONES PRINCIPALES DEL MENU LATERAL*/
+    .title1 {
+        padding-left: 10px;
+        font-size: 12px;
+        background-color: #171717;
+        color: #5A5A5A;
+        font-weight: bold;
+        text-align: center;
+    }
+/*PAGINAS IMPORTADAS POR URL*/
+    iframe {     
+        width: 100%;
+        height: 100%; 
+        position: relative; 
+        border: none;
+    }
+/*ESTILO DE TABLA*/
+    table {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+        margin-bottom: 40px;
+        margin-top: 50px;
+        background-color: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    img {
+        max-width: 100px;
+    }
+    .icon-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        color: #000;
+        text-decoration: none;
+        font-size: 48px;
+    }
+    .icon-link:hover {
+        color: #007bff;
+    }
+/*CUADROS DE PAGINA QUE SE MUESTRA AL CARGAR LA PAGINA*/
+    .card-container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .card {
+
+        background-color: #f7f9fb;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        width: 250px;
+        padding: 25px;
+        text-align: center;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+    .card p {
+        font-size: 35px;
+        color: #34495E;
+        font-weight: bold;
+        text-align: center;
+    }
+/*ESTILO DE GRAFICAS*/
+    .graficasgroup{
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .graficacircular{
+        background-color: #f7f9fb;
+        border-radius: 20px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        width: auto;
+        height: auto;
+        padding: 25px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .graficas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px; 
+    }
+    .chart-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%; 
+    }
+    .chart-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    canvas {
+       width: 100% !important; 
+       min-height: 400px !important;
+    }
+
+</style>
+
+<body>
+<!--***************OCULTA O MUESTRA MENU LATERAL***************-->
+<div id="toggle-btn">☰ ATM</div>
+<!--***************AREA DEL MENU LATERAL***************-->
+<div class="sidebar" id="sidebar">
+    <!--***************LOGO NAABOL***************-->
+    <img src="Ecojet_(Bolivia)_logo.png" alt="Logo">
+    <!--***************OPCIONES DEL MENU LATERAL***************-->
+    <div class="opcion">
+         <div class="title1">RESUMEN</div>
+        <a id="menu0" class="menu" href="#" onclick="ocultarMenu();showSection('Inicio'); resetActiveMenu(); resetActive(); setActive('Inicio'); fetchData('tablaM');HideSearch()"><i class="fas fa-plane "></i>  SUM</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">ENERO</div>
+        <a id="menu1" class="menu" href="#" onclick="ocultarMenu();showSection('opcion1'); resetActiveMenu(); resetActive(); setActive('opcion1'); fetchData('tablaA')"><i class="fas fa-snowflake"></i>  JAN</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">FEBRERO</div>
+        <a id="menu2" class="menu" href="#" onclick="ocultarMenu();showSection('opcion2'); resetActiveMenu(); resetActive(); setActive('opcion2'); fetchData('tablaB')"><i class="fas fa-heart"></i>  FEB</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">MARZO</div>
+        <a id="menu3" class="menu" href="#" onclick="ocultarMenu();showSection('opcion3'); resetActiveMenu(); resetActive(); setActive('opcion3'); fetchData('tablaC')"><i class="fas fa-clover"></i>  MAR</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">ABRIL</div>
+        <a id="menu4" class="menu" href="#" onclick="ocultarMenu();showSection('opcion4'); resetActiveMenu(); resetActive(); setActive('opcion4'); fetchData('tablaD')"><i class="fas fa-seedling"></i>  APR</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">MAYO</div>
+        <a id="menu5" class="menu" href="#" onclick="ocultarMenu();showSection('opcion5'); resetActiveMenu(); resetActive(); setActive('opcion5'); fetchData('tablaE')"><i class="fas fa-sun"></i>  MAY</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">JUNIO</div>
+        <a id="menu6" class="menu" href="#" onclick="ocultarMenu();showSection('opcion6'); resetActiveMenu(); resetActive(); setActive('opcion6'); fetchData('tablaF')"><i class="fas fa-graduation-cap"></i>  JUN</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">JULIO</div>
+        <a id="menu7" class="menu" href="#" onclick="ocultarMenu();showSection('opcion7'); resetActiveMenu(); resetActive(); setActive('opcion7'); fetchData('tablaG')"><i class="fas fa-umbrella-beach"></i>  JUL</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">AGOSTO</div>
+        <a id="menu8" class="menu" href="#" onclick="ocultarMenu();showSection('opcion8'); resetActiveMenu(); resetActive(); setActive('opcion8'); fetchData('tablaH')"><i class="fas fa-swimmer "></i>  AUG</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">SEPTIEMBRE</div>
+        <a id="menu9" class="menu" href="#" onclick="ocultarMenu();showSection('opcion9'); resetActiveMenu(); resetActive(); setActive('opcion9'); fetchData('tablaI')"><i class="fas fa-leaf"></i>  SEP</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">OCTUBRE</div>
+        <a id="menu10" class="menu" href="#" onclick="ocultarMenu();showSection('opcion10'); resetActiveMenu(); resetActive(); setActive('opcion10'); fetchData('tablaJ')"><i class="fas fa-ghost"></i>  OCT</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">NOVIEMBRE</div>
+        <a id="menu11" class="menu" href="#" onclick="ocultarMenu();showSection('opcion11'); resetActiveMenu(); resetActive(); setActive('opcion11'); fetchData('tablaK')"><i class="fas fa-fire "></i>  NOV</a>
+    </div>
+    <div class="opcion">
+         <div class="title1">DICIEMBRE</div>
+        <a id="menu12" class="menu" href="#" onclick="ocultarMenu();showSection('opcion12'); resetActiveMenu(); resetActive(); setActive('opcion12'); fetchData('tablaL')"><i class="fas fa-tree"></i>  DEC</a>
+    </div>
+
+</div>
+<!--***************AREA DEL CONTENIDO*************** -->
+<div class="content">
+    <!--***************SECCION QUE SE MUESTRA AL CARGAR LA PAGINA*************** -->
+    <!--***************CAMPO PARA LOGIN (USUARIO Y CONTRASEÑA)***************-->
+    <div id="login" class="login">
+        <h2>ATM LOGIN</h2>
+        <form onsubmit="return login(event)">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Entrar</button>
+            <div id="errorMessage" class="error"></div>
+        </form>
+    </div>
+    <div id="display-search-container" class="search-container">
+        <!-- Campo de búsqueda -->
+        <input type="text" id="buscador" onkeyup="filtrarTablas()" placeholder="Buscar...">
+        <!-- Icono de lupa -->
+        <i class="fas fa-search"></i>
+    </div>
+    <!--***************CONTENIDO DE LAS OPCIONES***************-->
+    <div id="Inicio" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> RESUMEN DE CUOTAS / INGRESOS / EGRESOS / GANANCIAS</p>
+        <div class="card-container">
+            <div class="card">
+                <span class="fas fa-money-bill"  style="font-size: 50px ; filter:grayscale(80%)"></span>
+                <span class="fas fa-arrow-up"  style="font-size: 50px ; filter:grayscale(80%)"></span>
+                <h1>TOTAL EFECTIVO</h1>
+                <p id="Efectivo-count"></p>
+            </div>
+            <div class="card">
+            	<span class="fas fa-money-bill"  style="font-size: 50px ; filter:grayscale(80%)"></span>
+                <i class="fas fa-arrow-down" style="font-size: 50px"></i>
+                <h1>TOTAL PRESTADO</h1>
+                <p id="Prestado-count">Cargando...</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-line" style="font-size: 50px"></i>
+                <h1>TOTAL GANANCIAS</h1>
+                <p id="Ganancias-count">Cargando...</p>
+            </div>
+        </div>
+        <div id="dataM" class="tabla"></div>
+    </div>
+    <div id="opcion1" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: ENERO/2025</p>
+        <div id="dataA" class="tabla"></div>
+    </div>
+    <div id="opcion2" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: FEBRERO/2025</p>
+        <div id="dataB" class="tabla"></div>
+    </div>
+    <div id="opcion3" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPBL</h3>
+        <p> MES: MARZO/2025</p>
+        <div id="dataC" class="tabla"></div>
+    </div>
+        <div id="opcion4" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: ABRIL/2025</p>
+        <div id="dataD" class="tabla"></div>
+    </div>
+    <div id="opcion5" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: MAYO/2025</p>
+        <div id="dataE" class="tabla"></div>
+    </div>
+        <div id="opcion6" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: JUNIO/2025</p>
+        <div id="dataF" class="tabla"></div>
+    </div>
+    <div id="opcion7" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: JULIO/2025</p>
+        <div id="dataG" class="tabla"></div>
+    </div>
+    <div id="opcion8" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: AGOSTO/2025</p>
+        <div id="dataH" class="tabla"></div>
+    </div>
+    <div id="opcion9" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: SEPTIEMBRE/2025</p>
+        <div id="dataI" class="tabla"></div>
+    </div>
+    <div id="opcion10" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: OCTUBRE/2025</p>
+        <div id="dataJ" class="tabla"></div>
+    </div>
+    <div id="opcion11" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: NOVIEMBRE/2025</p>
+        <div id="dataK" class="tabla"></div>
+    </div>
+    <div id="opcion12" class="section">
+        <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
+        <p> MES: DIEMBRE/2025</p>
+        <div id="dataL" class="tabla"></div>
+    </div>
+
+    <div id="opcion5-1" class="section">
+        <h3>INDICADORES CLAVE DE RENDIMIENTO</h3>
+        <p>KPI's BOLIVIA</p>
+            <iframe src="https://www.canva.com/design/DAGDSVbIs9Y/R6LVGZuKXxkDOcD2T06AlQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+    </div>
+
+</div>
+<!--***************PIE DE PAGINA CON COPYRIGHT***************-->
+<div class="footer">
+    <p>&copy; 2025 Canaston (ECOJET). Todos los derechos reservados. Prohibida su reproduccion parcial o total.</p>
+</div>
+</body>
+
+<script>
+//***************DATOS SENCIBLES*************** 
+const API_KEY = 'AIzaSyBfE3y6GhzjQl_UvYjLdeLuCCcHKpF_LQk';
+const SPREADSHEET_ID = '1oWHJ4BOA6egKEYFRhD0oOMszG-6i_cvfMCb3ZDyfCgg';
+
+//***************OPCIONES POR DEFECTO AL CARGAR LA PAGINA***************
+showSection('Inicio');
+const objeto = document.getElementById("display-search-container");
+objeto.style.display = 'none';
+let isLoggedIn = false;
+
+//***************MUESTRA O OCULTA SIDE BAR AL PULSAR ICONO SUPERIOR IZQUIERDO***************
+const sidebar = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('toggle-btn');
+toggleBtn.onclick = function() {
+    if (sidebar.style.display === 'block' || sidebar.style.display === '') {
+        sidebar.style.display = 'none';
+    } else {
+        sidebar.style.display = 'block';
+    }
+};
+
+//***************FUNCIONES NECESARIAS PARA LA INTERACCION Y ESTILOS DEL SIDEBAR***
+function resetActive() {
+    const submenuItems = document.querySelectorAll('.submenu a');
+    submenuItems.forEach(item => item.classList.remove('active'));
+}
+function resetActiveMenu() {
+    const menuItems = document.querySelectorAll('.sidebar a');
+    menuItems.forEach(item => item.classList.remove('active'));
+}
+function setActive(activeId) {
+    const menuItem = document.querySelector(`.sidebar a[href="#"][onclick*="${activeId}"]`);
+    if (menuItem) {
+        menuItem.classList.add('active');
+    }
+    const submenuItem = document.querySelector(`.submenu a[href="#"][onclick*="${activeId}"]`);
+    if (submenuItem) {
+        submenuItem.classList.add('active');
+    }
+}
+function toggleSubmenu(submenuId) {
+    const submenu = document.getElementById(submenuId);
+    const submenus = document.querySelectorAll('.submenu');
+    submenus.forEach(sub => {
+        if (sub !== submenu) {
+            sub.style.display = 'none';
+        }
+    });
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+}
+function toggleSubSubmenu(submenuId) {
+    const submenu = document.getElementById(submenuId);
+    const submenus = document.querySelectorAll('.subsubmenu');
+    submenus.forEach(sub => {
+        if (sub !== submenu) {
+            sub.style.display = 'none';
+        }
+    });
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+}
+
+//***************OCULTA EL BUSCADOR CUANDO SE EJECUTA LA FUNCION***************
+function HideSearch(){
+    const objeto = document.getElementById("display-search-container");
+    objeto.style.display = 'none';
+}
+
+//***************FUNCION QUE CREA LAS TABLAS Y LES DA FORMATO SEGUN EL CONTENIDO DE LA TABLA***************
+function fetchData(option) {
+    const sheetNames = {
+        tablaA: 'JAN!A:C',
+        tablaB: 'FEB!A:C',
+        tablaC: 'MAR!A:C',
+        tablaD: 'APR!A:C',
+        tablaE: 'MAY!A:C',
+        tablaF: 'JUN!A:C',
+        tablaG: 'JUL!A:C',
+        tablaH: 'AUG!A:C',
+        tablaI: 'SEP!A:C',
+        tablaJ: 'OCT!A:C',
+        tablaK: 'NOV!A:C',
+        tablaL: 'DEC!A:C',
+        tablaM: 'SUMMARY!A:C',
+        tablaN: '',
+        tablaO: '',
+        tablaP: '',
+        tablaQ: '',
+        tablaR: '', 
+        tablaS: '',
+        tablaT: '',
+        tablaU: '',
+        tablaV: '',
+        tablaW: '',
+        tablaX: '',
+        tablaY: '',
+        tablaZ: '',
+    };
+    const sheetName = sheetNames[option];
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${sheetName}?key=${API_KEY}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const rows = data.values;
+            let tableHTML = '<table><tr>';
+            rows[0].forEach(header => {
+                tableHTML += `<th>${header}</th>`;
+            });
+            tableHTML += '</tr>';
+            for (let i = 1; i < rows.length; i++) {
+                tableHTML += '<tr>';
+                rows[i].forEach(cell => {
+                    if (cell.startsWith('http') && (cell.includes('.com') || cell.includes('.org')|| cell.includes('.bo'))) {
+                        //***************SI ES UNA URL LE PONDRA ICONO DE DOCUMENTO***************
+                        tableHTML += `<td><a class="icon-link" href="${cell}" target="_blank"><i class="fas fa-file-alt"></i></a></td>`;
+                    } 
+                    else if (cell.includes('@')) {
+                        //***************SI HAY ALGUNA @ LE PONDRA ICONO DE MAIL***************
+                        tableHTML += `<td><a class="icon-link" href="mailto:${cell}" target="_blank"><i class="fas fa-envelope"></i></a></td>`;
+                    } 
+                    else if (/^[a-zA-Z0-9-_]{33}$/.test(cell)) {
+                        //***************SI ES LA ID DE UNA URL(SOLO LA ID) LE PONDRA ICONO DE PERSONA, PUES DEBERA SER UNA FOTO***************
+                        tableHTML += `<td><a class="icon-link" href="https://drive.google.com/file/d/${cell}/view?usp=drive_link" target="_blank"><i class="fas fa-user"></i></a></td>`;
+                    } 
+                    else {
+                        tableHTML += `<td>${cell}</td>`;
+                    }
+                });
+                tableHTML += '</tr>';
+            }
+            tableHTML += '</table>';
+            document.getElementById(`data${option.slice(-1)}`).innerHTML = tableHTML;
+            showContent(option);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+//***************FUNCION MUESTRA LA OPCION ELEGIDA DEL SIDEBAR Y DETERMINA SI NECESIATA LOGIN***************
+function showSection(sectionId) {
+
+    lastsectionId = sectionId;
+    const sections = document.querySelectorAll('.section');
+    const objeto = document.getElementById("display-search-container");
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+    //***************OPCIONES A LAS QUE SE REQUIERE LOGIN PARA ACCEDER***************
+    if (['subsubopcion1-1-1', 'subsubopcion1-1-2', 'subsubopcion1-2-1', 'subsubopcion1-2-2', 'subsubopcion1-3-1', 'subsubopcion1-3-2', 'subseccion2a', 'subseccion2b', 'subseccion3a', 'subseccion3b', 'subseccion3c'].includes(sectionId) && !isLoggedIn) {
+        // Guardamos la última opción solicitada
+        localStorage.setItem('lastRequestedSection', sectionId);
+        
+        // Mostramos el formulario de login
+        document.getElementById('login').style.display = 'flex';
+        document.getElementById('errorMessage').textContent = '';
+        objeto.style.display = 'none';
+        
+        // Manejador del evento de login
+        document.getElementById('login').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const range = 'USER&PASSWORD!E2:F1001'; 
+            try {
+                const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${range}?key=${API_KEY}`);
+                if (!response.ok) {
+                    throw new Error('Error en la llamada a la API: ' + response.statusText);
+                }
+                const data = await response.json();
+                const users = data.values;
+                if (!users || users.length === 0) {
+                    alert('No se encontraron datos en la hoja.');
+                    return;
+                }
+                let validUser = false;
+                for (let i = 1; i < users.length; i++) { 
+                    if (users[i][0] === username && users[i][1] === password) {
+                        validUser = true;
+                        break;
+                    }
+                }
+                if (validUser) {
+                    isLoggedIn = true;
+                    document.getElementById('login').style.display = 'none';
+                    
+                    // Recuperamos la última sección solicitada y la mostramos
+                    const lastRequestedSection = localStorage.getItem('lastRequestedSection');
+                    if (lastRequestedSection) {
+                        document.getElementById(lastRequestedSection).style.display = 'block';
+                        objeto.style.display = 'block';
+                        localStorage.removeItem('lastRequestedSection'); // Limpiamos la opción guardada
+                    }
+                } else {
+                    alert('Usuario o contraseña incorrectos');
+                }
+            } catch (error) {
+                console.error('Error al acceder a la hoja de Google Sheets:', error);
+                alert('Error al acceder a los datos: ' + error.message);
+            }
+        });
+    } else {
+        // Si el usuario ya está logueado, mostramos la opción directamente
+        document.getElementById('login').style.display = 'none';
+        document.getElementById(sectionId).style.display = 'block';
+        objeto.style.display = 'block';
+    }
+    resetActive();
+    setActive(sectionId);
+}
+
+
+//***************FUNCION NECESARIA PARA EL BUSCADOR***************
+function filtrarTablas() {
+    var input = document.getElementById('buscador');
+    var filtro = input.value.toLowerCase();
+    var tablas = document.querySelectorAll('.tabla');
+    tablas.forEach(function(tabla) {
+        var filas = tabla.getElementsByTagName('tr');
+        for (var i = 1; i < filas.length; i++) {
+            var celdas = filas[i].getElementsByTagName('td');
+            var encontrada = false;
+            for (var j = 0; j < celdas.length; j++) {
+                if (celdas[j].innerText.toLowerCase().indexOf(filtro) > -1) {
+                    encontrada = true;
+                    break;
+                }
+            }
+            if (encontrada) {
+                filas[i].style.display = "";
+            } else {
+                filas[i].style.display = "none";
+            }
+        }
+    });
+}
+
+//***************FUNCION NECESARIA PARA OPCIONES DEL SIDEBAR QUE NO TENGAN SUBOPCIONES***************
+function ocultarMenu() {
+    const submenus = document.querySelectorAll('.submenu');
+    submenus.forEach(function(submenu) {
+        submenu.style.display = 'none';
+    });
+}
+
+//***************CUENTA ELEMENTOS EN TABLAS DE UN RANGO DADO***************
+const ranges = [
+    { range: 'SUMMARY!D2', elementId: 'Efectivo-count' },
+    { range: 'SUMMARY!E2', elementId: 'Prestado-count' },
+    { range: 'SUMMARY!F2', elementId: 'Ganancias-count' }
+];
+
+function showCellValue(range, elementId) {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${range}?key=${API_KEY}`;
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.values && data.values.length > 0) {
+                // Obtiene el primer valor de la celda
+                const value = data.values[0][0]; 
+                document.getElementById(elementId).textContent = value;
+            } else {
+                console.log(`No se encontró valor en el rango: ${range}`);
+                document.getElementById(elementId).textContent = '0';
+            }
+        })
+        .catch(error => {
+            console.error(`Error al obtener los datos de ${range}:`, error);
+            document.getElementById(elementId).textContent = 'Error';
+        });
+}
+
+// Llamar la función para cada elemento en el array
+ranges.forEach(item => {
+    showCellValue(item.range, item.elementId);
+});
+
+
+//***************GRAFICOS CIRCULARES NIVEL DE COMPETENCIA LINGUISTICA***************                  
+function crearGraficaCircular(rango, canvasId, hoverColors) {
+    fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${rango}?key=${API_KEY}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al cargar los datos');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const labels = [];
+            const values = [];
+            let total = 0;
+            data.values.forEach(row => {
+                labels.push(row[0]);
+                const value = Number(row[1]);
+                values.push(value);
+                total += value;
+            });
+            const percentages = values.map(value => ((value / total) * 100).toFixed(2));
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            const backgroundColors = ['#000000','#171717', '#404040', '#707070', '#909090'];
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: backgroundColors,
+                        hoverBackgroundColor: hoverColors 
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    const label = tooltipItem.label;
+                                    const value = tooltipItem.raw;
+                                    const percentage = percentages[tooltipItem.dataIndex];
+                                    return ` ${percentage}% (${value} ATCO's) `;
+                                }
+                            },
+                            bodyFont: {
+                                size: 18
+                            },
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
+}
+const hoverColors1 = ['#36A2EB'];
+const hoverColors2 = ['#FFCE56'];
+const hoverColors3 = ['#7EC8A9'];
+const hoverColors4 = ['#005D8E'];
+const hoverColors5 = ['#4C9A2A'];
+const hoverColors6 = ['#FFB81C'];
+const hoverColors7 = ['#D32F2F'];
+crearGraficaCircular('GRAFICOS.ATCO!G6:H9', 'myPieChart1', hoverColors1);//ACC SLLP SLCB SLVR
+crearGraficaCircular('GRAFICOS.ATCO!J6:K9', 'myPieChart2', hoverColors2);//ATO SECUNDARIOS
+crearGraficaCircular('GRAFICOS.ATCO!M6:N9', 'myPieChart3', hoverColors3);//DATOS GENERALES
+crearGraficaCircular('GRAFICOS.ATCO!L18:M21', 'myPieChart4', hoverColors4);//REGIONAL LA PAZ
+crearGraficaCircular('GRAFICOS.ATCO!L24:M27', 'myPieChart5', hoverColors5);//REGIONAL COCHABAMBA
+crearGraficaCircular('GRAFICOS.ATCO!L30:M33', 'myPieChart6', hoverColors6);//REGIONAL BENI
+crearGraficaCircular('GRAFICOS.ATCO!L36:M39', 'myPieChart7', hoverColors7);//REGIONAL SANTA CRUZ
+
+//***************GRAFICOS DE BARRA NIVEL DE COMPETENCIA LINGUISTICA POR REGIONALES - AEROPUERTO***************
+const backgroundColorsGrafica = [
+    '#000000',
+    '#171717',
+    '#404040',
+    '#707070',
+    '#909090'
+];
+const hoverColorsGrafica = [
+    'rgba(255, 99, 132, 1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 206, 86, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(255, 159, 64, 1)'
+];
+function fetchSheetDataGrafica(rangeGrafica, chartContainerIdGrafica, chartTypeGrafica = 'bar') {
+    const urlGrafica = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${rangeGrafica}?key=${API_KEY}`;
+    fetch(urlGrafica)
+        .then(response => response.json())
+        .then(data => {
+            const rowsGrafica = data.values;
+            if (!rowsGrafica || rowsGrafica.length === 0) {
+                console.error('No se encontraron datos en el rango especificado');
+                return;
+            }
+            const labelsGrafica = rowsGrafica[0].slice(1); // Eliminar la primera celda de la primera fila
+            const datasetsGrafica = [];
+
+            for (let i = 1; i < rowsGrafica.length; i++) {
+                const datasetGrafica = {
+                    label: rowsGrafica[i][0],
+                    data: rowsGrafica[i].slice(1).map(value => parseFloat(value) || 0),
+                    backgroundColor: backgroundColorsGrafica[i % backgroundColorsGrafica.length],
+                    borderColor: backgroundColorsGrafica[i % backgroundColorsGrafica.length],
+                    borderWidth: 1,
+                    hoverBackgroundColor: hoverColorsGrafica[i % hoverColorsGrafica.length],
+                    hoverBorderColor: hoverColorsGrafica[i % hoverColorsGrafica.length]
+                };
+                datasetsGrafica.push(datasetGrafica);
+            }
+            createChartGrafica(labelsGrafica, datasetsGrafica, chartContainerIdGrafica, chartTypeGrafica);
+        })
+        .catch(error => console.error('Error al cargar los datos de Google Sheets:', error));
+}
+function createChartGrafica(labelsGrafica, datasetsGrafica, chartContainerIdGrafica, chartTypeGrafica) {
+    const containerGrafica = document.getElementById(chartContainerIdGrafica);
+    const canvasGrafica = document.createElement('canvas');
+    canvasGrafica.style.height = '500px !important';
+    containerGrafica.appendChild(canvasGrafica);
+    const ctxGrafica = canvasGrafica.getContext('2d');
+    new Chart(ctxGrafica, {
+        type: chartTypeGrafica, 
+        data: {
+            labels: labelsGrafica,
+            datasets: datasetsGrafica
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        title: (tooltipItemsGrafica) => {
+                            return tooltipItemsGrafica[0].label;
+                        },
+                        label: (tooltipItemGrafica) => {
+                            let sumGrafica = 0;
+                            tooltipItemGrafica.chart.data.datasets.forEach((datasetGrafica) => {
+                                sumGrafica += datasetGrafica.data[tooltipItemGrafica.dataIndex];
+                            });
+
+                            const valueGrafica = tooltipItemGrafica.raw;
+                            const percentageGrafica = ((valueGrafica / sumGrafica) * 100).toFixed(2);
+                            return `${tooltipItemGrafica.dataset.label}: ${valueGrafica} (${percentageGrafica}%)`;
+                        }
+                    },
+                    bodyFont: {
+                        size: 18
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    stacked: true,
+                    beginAtZero: true
+                },
+                x: {
+                    stacked: true
+                }
+            }
+        }
+    });
+}
+function loadGraphsGrafica() {
+    const rangesGrafica = [
+        { rangeGrafica: 'GRAFICOS.ATCO!A17:K21', containerIdGrafica: 'chart1', typeGrafica: 'bar', titleGrafica: 'REGIONAL LA PAZ' },
+        { rangeGrafica: 'GRAFICOS.ATCO!A23:K27', containerIdGrafica: 'chart2', typeGrafica: 'bar', titleGrafica: 'REGIONAL COCHABAMBA' },
+        { rangeGrafica: 'GRAFICOS.ATCO!A29:K33', containerIdGrafica: 'chart3', typeGrafica: 'bar', titleGrafica: 'REGIONAL BENI' },
+        { rangeGrafica: 'GRAFICOS.ATCO!A35:K39', containerIdGrafica: 'chart4', typeGrafica: 'bar', titleGrafica: 'REGIONAL SANTA CRUZ' },
+    ];
+    rangesGrafica.forEach((rangeGrafica) => {
+        const titleElementGrafica = document.createElement('h3');
+        titleElementGrafica.classList.add('chart-title');
+        titleElementGrafica.textContent = rangeGrafica.titleGrafica;
+        const divGrafica = document.createElement('div');
+        divGrafica.id = rangeGrafica.containerIdGrafica;
+        divGrafica.classList.add('chart-container');
+        const chartWrapperGrafica = document.createElement('div');
+        chartWrapperGrafica.classList.add('chart-wrapper');
+        chartWrapperGrafica.appendChild(titleElementGrafica);
+        chartWrapperGrafica.appendChild(divGrafica);
+        document.getElementById('charts-container').appendChild(chartWrapperGrafica); 
+        fetchSheetDataGrafica(rangeGrafica.rangeGrafica, rangeGrafica.containerIdGrafica, rangeGrafica.typeGrafica);
+    });
+}
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            loadGraphsGrafica();
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.5
+});
+const sectionGrafica = document.getElementById('graficas');
+observer.observe(sectionGrafica);
+        
+</script>
+</html>
