@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.8">  
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>CANASTON 2025 - ECOJET</title>
-</head>
 <style>
     * {
         box-sizing: border-box;
@@ -390,7 +388,8 @@
        min-height: 400px !important;
     }
 
-</style>
+</style></head>
+
 
 <body>
 <!--***************OCULTA O MUESTRA MENU LATERAL***************-->
@@ -400,101 +399,122 @@
     <!--***************LOGO NAABOL***************-->
     <img src="Ecojet_(Bolivia)_logo.png" alt="Logo">
     <!--***************OPCIONES DEL MENU LATERAL***************-->
+
     <div class="opcion">
-         <div class="title1">RESUMEN</div>
-        <a id="menu0" class="menu" href="#" onclick="ocultarMenu();showSection('Inicio'); resetActiveMenu(); resetActive(); setActive('Inicio'); fetchData('tablaM');HideSearch()"><i class="fas fa-plane "></i>  SUMMARY</a>
+
+        <div class="title1">CANASTON 2025</div>
+        <a id="menu1" class="menu" href="#" onclick="toggleSubmenu('menu1-1'); resetActiveMenu();setActive('menu1')"><i class="fas fa-gift"></i> CANASTON</a>
+	        <div id="menu1-1" class="submenu">
+	            <a href="#" onclick="showSection('opcion1-1'); resetActiveMenu(); resetActive(); setActive('menu1'); HideSearch();fetchData('tablaM')"><i class="fas fa-chart-line"></i> RESUMEN</a>
+                <a href="#" id="opcion1-2" onclick="resetActive(); toggleSubSubmenu('menu1-2-1'); setActive('opcion1-2')"><i class="fas fa-chevron-down"></i> CUOTAS</a>
+                <div id="menu1-2-1" class="subsubmenu">
+                    <a href="#" onclick="showSection('opcion1-2-1');setActive('opcion1-2');fetchData('tablaA')"><i class="fas fa-caret-right"></i> ENERO</a>
+                    <a href="#" onclick="showSection('opcion1-2-2');setActive('opcion1-2');fetchData('tablaB')"><i class="fas fa-caret-right"></i> FEBRERO</a>
+                    <a href="#" onclick="showSection('opcion1-2-3');setActive('opcion1-2');fetchData('tablaC')"><i class="fas fa-caret-right"></i> MARZO</a>
+                    <a href="#" onclick="showSection('opcion1-2-4');setActive('opcion1-2');fetchData('tablaD')"><i class="fas fa-caret-right"></i> ABRIL</a>
+                    <a href="#" onclick="showSection('opcion1-2-5');setActive('opcion1-2');fetchData('tablaE')"><i class="fas fa-caret-right"></i> MAYO</a>
+                    <a href="#" onclick="showSection('opcion1-2-6');setActive('opcion1-2');fetchData('tablaF')"><i class="fas fa-caret-right"></i> JUNIO</a>
+                    <a href="#" onclick="showSection('opcion1-2-7');setActive('opcion1-2');fetchData('tablaG')"><i class="fas fa-caret-right"></i> JULIO</a>
+                    <a href="#" onclick="showSection('opcion1-2-8');setActive('opcion1-2');fetchData('tablaH')"><i class="fas fa-caret-right"></i> AGOSTO</a>
+                    <a href="#" onclick="showSection('opcion1-2-9');setActive('opcion1-2');fetchData('tablaI')"><i class="fas fa-caret-right"></i> SEPTIEMBRE</a>
+                    <a href="#" onclick="showSection('opcion1-2-10');setActive('opcion1-2');fetchData('tablaJ')"><i class="fas fa-caret-right"></i> OCTUBRE</a>
+                    <a href="#" onclick="showSection('opcion1-2-11');setActive('opcion1-2');fetchData('tablaK')"><i class="fas fa-caret-right"></i> NOVIEMBRE</a>
+                    <a href="#" onclick="showSection('opcion1-2-12');setActive('opcion1-2');fetchData('tablaL')"><i class="fas fa-caret-right"></i> DICIEMBRE</a>
+                </div>
+            	<a href="#" onclick="showSection('opcion1-3'); fetchData('tablaN')"><i class="fas fa-chart-line"></i> PRESTAMOS</a>
+            </div>     
     </div>
     <div class="opcion">
-         <div class="title1">ENERO</div>
-        <a id="menu1" class="menu" href="#" onclick="ocultarMenu();showSection('opcion1'); resetActiveMenu(); resetActive(); setActive('opcion1'); fetchData('tablaA')"><i class="fas fa-snowflake"></i>  JANUARY</a>
+        <div class="title1">MANUALES Y PROCEDIMIENTOS</div>
+        <a id="menu2" class="menu" href="#" onclick="toggleSubmenu('menu2-1'); resetActiveMenu();setActive('menu2')"><i class="fas fa-book"></i>  MANUALES</a>
+        <div id="menu2-1" class="submenu">
+            <a href="#" onclick="showSection('opcion2-1'); fetchData('tablaO')"><i class="fas fa-caret-right"></i> Documentos Vigentes</a>
+            <a href="#" onclick="showSection('opcion2-2'); fetchData('tablaP')"><i class="fas fa-caret-right"></i> Documentos Pasados</a>
+        </div>
     </div>
     <div class="opcion">
-         <div class="title1">FEBRERO</div>
-        <a id="menu2" class="menu" href="#" onclick="ocultarMenu();showSection('opcion2'); resetActiveMenu(); resetActive(); setActive('opcion2'); fetchData('tablaB')"><i class="fas fa-heart"></i>  FEBRUARY</a>
+        <div class="title1">PERSONAL EN TIERRA</div>
+        <a id="menu3" class="menu" href="#" onclick="toggleSubmenu('menu3-1'); resetActiveMenu();setActive('menu3')"><i class="fas fa-users"></i>  PERSONAL</a>
+        <div id="menu3-1" class="submenu">
+            <a href="#" onclick="showSection('opcion3-1'); fetchData('tablaQ')"><i class="fas fa-caret-right"></i> Listado del Personal</a>
+            <a href="#" onclick="showSection('opcion3-2'); fetchData('tablaR')"><i class="fas fa-caret-right"></i> Rol de Turnos</a>
+            <a href="#" onclick="showSection('opcion3-3'); HideSearch()"><i class="fas fa-caret-right"></i> Graficos estadisticos</a>
+        </div>
     </div>
     <div class="opcion">
-         <div class="title1">MARZO</div>
-        <a id="menu3" class="menu" href="#" onclick="ocultarMenu();showSection('opcion3'); resetActiveMenu(); resetActive(); setActive('opcion3'); fetchData('tablaC')"><i class="fas fa-clover"></i>  MARCH</a>
+        <div class="title1">INSTRUCTIVOS AL PERSONAL</div>
+        <a id="menu4" class="menu" href="#" onclick="toggleSubmenu('menu4-1'); resetActiveMenu();resetActive();setActive('menu4')"><i class="fas fa-file-alt"></i>  INSTRUCTIVOS</a>
+        <div id="menu4-1" class="submenu">
+            <a href="#" onclick="showSection('opcion4-1'); fetchData('tablaS')"><i class="fas fa-caret-right"></i> Instructivos en la gestión</a>
+            <a href="#" onclick="showSection('opcion4-2'); fetchData('tablaT')"><i class="fas fa-caret-right"></i> Historial de instructivos</a>
+        </div>
     </div>
     <div class="opcion">
-         <div class="title1">ABRIL</div>
-        <a id="menu4" class="menu" href="#" onclick="ocultarMenu();showSection('opcion4'); resetActiveMenu(); resetActive(); setActive('opcion4'); fetchData('tablaD')"><i class="fas fa-seedling"></i>  APRIL</a>
+        <div class="title1">BOLETINES DE SEGURIDAD</div>
+        <a id="menu5" class="menu" href="#" onclick="toggleSubmenu('menu5-1'); resetActiveMenu();setActive('menu5')"><i class="fas fa-shield-alt"></i>  BOLETINES</a>
+        <div id="menu5-1" class="submenu">
+            <a href="#" onclick="showSection('opcion5-1'); fetchData('tablaU')"><i class="fas fa-caret-right"></i> Boletines en la gestión</a>
+            <a href="#" onclick="showSection('opcion5-2'); fetchData('tablaV')"><i class="fas fa-caret-right"></i> Historial de boletines</a>
+        </div>
     </div>
     <div class="opcion">
-         <div class="title1">MAYO</div>
-        <a id="menu5" class="menu" href="#" onclick="ocultarMenu();showSection('opcion5'); resetActiveMenu(); resetActive(); setActive('opcion5'); fetchData('tablaE')"><i class="fas fa-sun"></i>  MAY</a>
+        <div class="title1">INVITACIONES A EVENTOS</div>
+        <a id="menu6" class="menu" href="#" onclick="toggleSubmenu('menu6-1'); resetActiveMenu();setActive('menu6')"><i class="fas fa-mail-bulk"></i>  INVITACIONES</a>
+        <div id="menu6-1" class="submenu">
+            <a href="#" onclick="showSection('opcion6-1'); fetchData('tablaW')"><i class="fas fa-caret-right"></i> DGAC</a>
+            <a href="#" onclick="showSection('opcion6-2'); fetchData('tablaX')"><i class="fas fa-caret-right"></i> NAABOL</a>
+            <a href="#" onclick="showSection('opcion6-3'); fetchData('tablaY')"><i class="fas fa-caret-right"></i> ATT</a>
+        </div>
     </div>
     <div class="opcion">
-         <div class="title1">JUNIO</div>
-        <a id="menu6" class="menu" href="#" onclick="ocultarMenu();showSection('opcion6'); resetActiveMenu(); resetActive(); setActive('opcion6'); fetchData('tablaF')"><i class="fas fa-graduation-cap"></i>  JUNE</a>
+        <div class="title1">RECLAMOS Y COMPENSACIONES</div>
+        <a id="menu7" class="menu" href="#" onclick="toggleSubmenu('menu7-1'); resetActiveMenu();setActive('menu7')"><i class="fas fa-file-signature"></i>  RECLAMOS</a>
+        <div id="menu7-1" class="submenu">
+            <a href="#" onclick="showSection('opcion7-1'); fetchData('tablaZ')"><i class="fas fa-caret-right"></i> ODECOS</a>
+            <a href="#" onclick="showSection('opcion7-2'); fetchData('tablaAA')"><i class="fas fa-caret-right"></i> PIR'S</a>
+            <a href="#" onclick="showSection('opcion7-3'); fetchData('tablaBB')"><i class="fas fa-caret-right"></i> MATRICES DE COMPENSACION</a>
+        </div>
     </div>
-    <div class="opcion">
-         <div class="title1">JULIO</div>
-        <a id="menu7" class="menu" href="#" onclick="ocultarMenu();showSection('opcion7'); resetActiveMenu(); resetActive(); setActive('opcion7'); fetchData('tablaG')"><i class="fas fa-umbrella-beach"></i>  JULY</a>
-    </div>
-    <div class="opcion">
-         <div class="title1">AGOSTO</div>
-        <a id="menu8" class="menu" href="#" onclick="ocultarMenu();showSection('opcion8'); resetActiveMenu(); resetActive(); setActive('opcion8'); fetchData('tablaH')"><i class="fas fa-swimmer "></i>  AUGUST</a>
-    </div>
-    <div class="opcion">
-         <div class="title1">SEPTIEMBRE</div>
-        <a id="menu9" class="menu" href="#" onclick="ocultarMenu();showSection('opcion9'); resetActiveMenu(); resetActive(); setActive('opcion9'); fetchData('tablaI')"><i class="fas fa-leaf"></i>  SEPTEMBER</a>
-    </div>
-    <div class="opcion">
-         <div class="title1">OCTUBRE</div>
-        <a id="menu10" class="menu" href="#" onclick="ocultarMenu();showSection('opcion10'); resetActiveMenu(); resetActive(); setActive('opcion10'); fetchData('tablaJ')"><i class="fas fa-ghost"></i>  OCTOBER</a>
-    </div>
-    <div class="opcion">
-         <div class="title1">NOVIEMBRE</div>
-        <a id="menu11" class="menu" href="#" onclick="ocultarMenu();showSection('opcion11'); resetActiveMenu(); resetActive(); setActive('opcion11'); fetchData('tablaK')"><i class="fas fa-fire "></i>  NOVEMBER</a>
-    </div>
-    <div class="opcion">
-         <div class="title1">DICIEMBRE</div>
-        <a id="menu12" class="menu" href="#" onclick="ocultarMenu();showSection('opcion12'); resetActiveMenu(); resetActive(); setActive('opcion12'); fetchData('tablaL')"><i class="fas fa-tree"></i>  DECEMBER</a>
-    </div>
-    <div class="opcion">
-         <div class="title1">PRESTAMOS</div>
-        <a id="menu13" class="menu" href="#" onclick="ocultarMenu();showSection('opcion13'); resetActiveMenu(); resetActive(); setActive('opcion13'); fetchData('tablaN')"><i class="fas fa-chart-line"></i>  LOANS</a>
-    </div>
+
 
 </div>
 <!--***************AREA DEL CONTENIDO*************** -->
 <div class="content">
     <!--***************SECCION QUE SE MUESTRA AL CARGAR LA PAGINA*************** -->
     <!--***************CAMPO PARA LOGIN (USUARIO Y CONTRASEÑA)***************-->
-    <div id="login" class="login">
-        <h2>ATM LOGIN</h2>
+    <div id="login" class="login" style="display: none;">
+        <h2>ECO LOGIN</h2>
         <form onsubmit="return login(event)">
-            <input type="text" id="username" placeholder="Usuario" required>
-            <input type="password" id="password" placeholder="Contraseña" required>
+            <input type="text" id="username" placeholder="Usuario" required="">
+            <input type="password" id="password" placeholder="Contraseña" required="">
             <button type="submit">Entrar</button>
             <div id="errorMessage" class="error"></div>
         </form>
     </div>
-    <div id="display-search-container" class="search-container">
+    <div id="display-search-container" class="search-container" style="display: none;">
         <!-- Campo de búsqueda -->
         <input type="text" id="buscador" onkeyup="filtrarTablas()" placeholder="Buscar...">
         <!-- Icono de lupa -->
         <i class="fas fa-search"></i>
     </div>
     <!--***************CONTENIDO DE LAS OPCIONES***************-->
-    <div id="Inicio" class="section">
+    <div id="opcion1-1" class="section" style="display: block;">
         <h3>CUOTAS DEL CANASTON 2025 - ECOJET LPB</h3>
         <p> RESUMEN DE CUOTAS</p>
         <div class="card-container">
             <div class="card">
-                <span class="fas fa-store"  style="font-size: 50px ; filter:grayscale(80%)"></span>
+                <span class="fas fa-store" style="font-size: 50px ; filter:grayscale(80%)"></span>
                 <h1>TOTAL CANASTONES</h1>
                 <p id="Canastones-count">Cargando...</p>
             </div>
             <div class="card">
-                <span class="fas fa-money-bill"  style="font-size: 50px ; filter:grayscale(80%)"></span>
-                <span class="fas fa-arrow-up"  style="font-size: 50px ; filter:grayscale(80%)"></span>
+                <span class="fas fa-money-bill" style="font-size: 50px ; filter:grayscale(80%)"></span>
+                <span class="fas fa-arrow-up" style="font-size: 50px ; filter:grayscale(80%)"></span>
                 <h1>TOTAL EFECTIVO</h1>
                 <p id="Efectivo-count">Cargando...</p>
             </div>
             <div class="card">
-            	<span class="fas fa-money-bill"  style="font-size: 50px ; filter:grayscale(80%)"></span>
+            	<span class="fas fa-money-bill" style="font-size: 50px ; filter:grayscale(80%)"></span>
                 <i class="fas fa-arrow-down" style="font-size: 50px"></i>
                 <h1>TOTAL PRESTADO</h1>
                 <p id="Prestado-count">Cargando...</p>
@@ -507,73 +527,73 @@
         </div>
         <div id="dataM" class="tabla"></div>
     </div>
-    <div id="opcion1" class="section">
+    <div id="opcion1-2-1" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: ENERO/2025</p>
         <div id="dataA" class="tabla"></div>
     </div>
-    <div id="opcion2" class="section">
+    <div id="opcion1-2-2" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: FEBRERO/2025</p>
         <div id="dataB" class="tabla"></div>
     </div>
-    <div id="opcion3" class="section">
+    <div id="opcion1-2-3" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: MARZO/2025</p>
         <div id="dataC" class="tabla"></div>
     </div>
-        <div id="opcion4" class="section">
+        <div id="opcion1-2-4" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: ABRIL/2025</p>
         <div id="dataD" class="tabla"></div>
     </div>
-    <div id="opcion5" class="section">
+    <div id="opcion1-2-5" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: MAYO/2025</p>
         <div id="dataE" class="tabla"></div>
     </div>
-        <div id="opcion6" class="section">
+        <div id="opcion1-2-6" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: JUNIO/2025</p>
         <div id="dataF" class="tabla"></div>
     </div>
-    <div id="opcion7" class="section">
+    <div id="opcion1-2-7" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: JULIO/2025</p>
         <div id="dataG" class="tabla"></div>
     </div>
-    <div id="opcion8" class="section">
+    <div id="opcion1-2-8" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: AGOSTO/2025</p>
         <div id="dataH" class="tabla"></div>
     </div>
-    <div id="opcion9" class="section">
+    <div id="opcion1-2-9" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: SEPTIEMBRE/2025</p>
         <div id="dataI" class="tabla"></div>
     </div>
-    <div id="opcion10" class="section">
+    <div id="opcion1-2-10" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: OCTUBRE/2025</p>
         <div id="dataJ" class="tabla"></div>
     </div>
-    <div id="opcion11" class="section">
+    <div id="opcion1-2-11" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: NOVIEMBRE/2025</p>
         <div id="dataK" class="tabla"></div>
     </div>
-    <div id="opcion12" class="section">
+    <div id="opcion1-2-12" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> MES: DIEMBRE/2025</p>
         <div id="dataL" class="tabla"></div>
     </div>
-    <div id="opcion13" class="section">
+    <div id="opcion1-3" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p> TABLA DE PRESTAMOS E INTERESES</p>
         <div id="dataN" class="tabla"></div>
     </div>
 
-    <div id="opcion5-1" class="section">
+    <div id="opcion5-1" class="section" style="display: none;">
         <h3>CUOTAS DEL CANASTON 2025</h3>
         <p>KPI's BOLIVIA</p>
             <iframe src="https://www.canva.com/design/DAGDSVbIs9Y/R6LVGZuKXxkDOcD2T06AlQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
@@ -582,9 +602,9 @@
 </div>
 <!--***************PIE DE PAGINA CON COPYRIGHT***************-->
 <div class="footer">
-    <p>&copy; 2025 Canaston (ECOJET). Todos los derechos reservados. Prohibida su reproduccion parcial o total.</p>
+    <p>© 2025 Canaston (ECOJET). Todos los derechos reservados. Prohibida su reproduccion parcial o total.</p>
 </div>
-</body>
+
 
 <script>
 //***************DATOS SENCIBLES*************** 
@@ -592,7 +612,7 @@ const API_KEY = 'AIzaSyBfE3y6GhzjQl_UvYjLdeLuCCcHKpF_LQk';
 const SPREADSHEET_ID = '1oWHJ4BOA6egKEYFRhD0oOMszG-6i_cvfMCb3ZDyfCgg';
 
 //***************OPCIONES POR DEFECTO AL CARGAR LA PAGINA***************
-showSection('Inicio');
+showSection('opcion1-1');
 const objeto = document.getElementById("display-search-container");
 objeto.style.display = 'none';
 let isLoggedIn = false;
@@ -657,19 +677,19 @@ function HideSearch(){
 //***************FUNCION QUE CREA LAS TABLAS Y LES DA FORMATO SEGUN EL CONTENIDO DE LA TABLA***************
 function fetchData(option) {
     const sheetNames = {
-        tablaA: 'JAN!A:C',
-        tablaB: 'FEB!A:C',
-        tablaC: 'MAR!A:C',
-        tablaD: 'APR!A:C',
-        tablaE: 'MAY!A:C',
-        tablaF: 'JUN!A:C',
-        tablaG: 'JUL!A:C',
-        tablaH: 'AUG!A:C',
-        tablaI: 'SEP!A:C',
-        tablaJ: 'OCT!A:C',
-        tablaK: 'NOV!A:C',
-        tablaL: 'DEC!A:C',
-        tablaM: 'SUMMARY!A:C',
+        tablaA: 'CANASTON!B6:D48',
+        tablaB: 'CANASTON!E6:G48',
+        tablaC: 'CANASTON!H6:J48',
+        tablaD: 'CANASTON!K6:M48',
+        tablaE: 'CANASTON!N6:P48',
+        tablaF: 'CANASTON!Q6:S48',
+        tablaG: 'CANASTON!T6:V48',
+        tablaH: 'CANASTON!W6:Y48',
+        tablaI: 'CANASTON!Z6:AB48',
+        tablaJ: 'CANASTON!AC6:AE48',
+        tablaK: 'CANASTON!AF6:AH48',
+        tablaL: 'CANASTON!AI6:AK48',
+        tablaM: 'CANASTON!AL6:AN48',
         tablaN: 'PRESTAMOS!A3:O1002',
         tablaO: '',
         tablaP: '',
@@ -733,7 +753,7 @@ function showSection(sectionId) {
         section.style.display = 'none';
     });
     //***************OPCIONES A LAS QUE SE REQUIERE LOGIN PARA ACCEDER***************
-    if (['opcion13'].includes(sectionId) && !isLoggedIn) {
+    if (['opcion1-3'].includes(sectionId) && !isLoggedIn) {
         // Guardamos la última opción solicitada
         localStorage.setItem('lastRequestedSection', sectionId);
         
@@ -831,10 +851,10 @@ function ocultarMenu() {
 
 //***************CUENTA ELEMENTOS EN TABLAS DE UN RANGO DADO***************
 const ranges = [
-    { range: 'SUMMARY!D2', elementId: 'Efectivo-count' },
-    { range: 'SUMMARY!E2', elementId: 'Prestado-count' },
-    { range: 'SUMMARY!F2', elementId: 'Ganancias-count' },
-    { range: 'SUMMARY!G2', elementId: 'Canastones-count' }
+    { range: 'CANASTON!AM49', elementId: 'Efectivo-count' },
+    { range: 'PRESTAMOS!C2', elementId: 'Prestado-count' },
+    { range: 'PRESTAMOS!C3', elementId: 'Ganancias-count' },
+    { range: 'CANASTON!AM2', elementId: 'Canastones-count' }
 ];
 
 function showCellValue(range, elementId) {
@@ -1070,4 +1090,5 @@ const sectionGrafica = document.getElementById('graficas');
 observer.observe(sectionGrafica);
         
 </script>
-</html>
+
+</body></html>
