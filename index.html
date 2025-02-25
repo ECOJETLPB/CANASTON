@@ -404,8 +404,8 @@
 
         <div class="title1">CANASTON 2025</div>
         <a id="menu1" class="menu" href="#" onclick="toggleSubmenu('menu1-1'); resetActiveMenu();setActive('menu1')"><i class="fas fa-gift"></i> CANASTON</a>
-	        <div id="menu1-1" class="submenu">
-	            <a href="#" onclick="showSection('opcion1-1'); resetActiveMenu(); resetActive(); setActive('menu1'); HideSearch();fetchData('tablaM')"><i class="fas fa-chart-line"></i> RESUMEN</a>
+            <div id="menu1-1" class="submenu">
+                <a href="#" onclick="showSection('opcion1-1'); resetActiveMenu(); resetActive(); setActive('menu1'); HideSearch();fetchData('tablaM')"><i class="fas fa-chart-line"></i> RESUMEN</a>
                 <a href="#" id="opcion1-2" onclick="resetActive(); toggleSubSubmenu('menu1-2-1'); setActive('opcion1-2')"><i class="fas fa-chevron-down"></i> CUOTAS</a>
                 <div id="menu1-2-1" class="subsubmenu">
                     <a href="#" onclick="showSection('opcion1-2-1');setActive('opcion1-2');fetchData('tablaA')"><i class="fas fa-caret-right"></i> ENERO</a>
@@ -421,7 +421,7 @@
                     <a href="#" onclick="showSection('opcion1-2-11');setActive('opcion1-2');fetchData('tablaK')"><i class="fas fa-caret-right"></i> NOVIEMBRE</a>
                     <a href="#" onclick="showSection('opcion1-2-12');setActive('opcion1-2');fetchData('tablaL')"><i class="fas fa-caret-right"></i> DICIEMBRE</a>
                 </div>
-            	<a href="#" onclick="showSection('opcion1-3'); fetchData('tablaN')"><i class="fas fa-chart-line"></i> PRESTAMOS</a>
+                <a href="#" onclick="showSection('opcion1-3'); fetchData('tablaN')"><i class="fas fa-chart-line"></i> PRESTAMOS</a>
             </div>     
     </div>
     <div class="opcion">
@@ -450,11 +450,11 @@
         </div>
     </div>
     <div class="opcion">
-        <div class="title1">BOLETINES DE SEGURIDAD</div>
-        <a id="menu5" class="menu" href="#" onclick="toggleSubmenu('menu5-1'); resetActiveMenu();setActive('menu5')"><i class="fas fa-shield-alt"></i>  BOLETINES</a>
+        <div class="title1">GACETAS DE SEGURIDAD</div>
+        <a id="menu5" class="menu" href="#" onclick="toggleSubmenu('menu5-1'); resetActiveMenu();setActive('menu5')"><i class="fas fa-shield-alt"></i>  GACETAS</a>
         <div id="menu5-1" class="submenu">
-            <a href="#" onclick="showSection('opcion5-1'); fetchData('tablaU')"><i class="fas fa-caret-right"></i> Boletines en la gestión</a>
-            <a href="#" onclick="showSection('opcion5-2'); fetchData('tablaV')"><i class="fas fa-caret-right"></i> Historial de boletines</a>
+            <a href="#" onclick="showSection('opcion5-1'); fetchData('tablaU')"><i class="fas fa-caret-right"></i> Gacetas en la gestión</a>
+            <a href="#" onclick="showSection('opcion5-2'); fetchData('tablaV')"><i class="fas fa-caret-right"></i> Historial de gacetas</a>
         </div>
     </div>
     <div class="opcion">
@@ -514,7 +514,7 @@
                 <p id="Efectivo-count">Cargando...</p>
             </div>
             <div class="card">
-            	<span class="fas fa-money-bill" style="font-size: 50px ; filter:grayscale(80%)"></span>
+                <span class="fas fa-money-bill" style="font-size: 50px ; filter:grayscale(80%)"></span>
                 <i class="fas fa-arrow-down" style="font-size: 50px"></i>
                 <h1>TOTAL PRESTADO</h1>
                 <p id="Prestado-count">Cargando...</p>
@@ -593,12 +593,27 @@
         <div id="dataN" class="tabla"></div>
     </div>
 
-    <div id="opcion5-1" class="section" style="display: none;">
-        <h3>CUOTAS DEL CANASTON 2025</h3>
-        <p>KPI's BOLIVIA</p>
-            <iframe src="https://www.canva.com/design/DAGDSVbIs9Y/R6LVGZuKXxkDOcD2T06AlQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+    <div id="opcion4-1" class="section" style="display: none;">
+        <h3>INSTRUCTIVAS AL PERSONAL</h3>
+        <p>AEROPUERTO INTERNACIONAL EL ALTO - SLLP - LPB</p>
+        <div id="dataS" class="tabla"></div>
+    </div>
+    <div id="opcion4-2" class="section" style="display: none;">
+        <h3>INSTRUCTIVAS PASADAS AL PERSONAL</h3>
+        <p>AEROPUERTO INTERNACIONAL EL ALTO - SLLP - LPB</p>
+        <div id="dataT" class="tabla"></div>
     </div>
 
+    <div id="opcion5-1" class="section" style="display: none;">
+        <h3>GACETAS DE SEGURIDAD</h3>
+        <p>AEROPUERTO INTERNACIONAL EL ALTO - SLLP - LPB</p>
+        <div id="dataU" class="tabla"></div>
+    </div>
+    <div id="opcion5-2" class="section" style="display: none;">
+        <h3>GACETAS DE SEGURIDAD PASADAS</h3>
+        <p>AEROPUERTO INTERNACIONAL EL ALTO - SLLP - LPB</p>
+        <div id="dataV" class="tabla"></div>
+    </div>
 </div>
 <!--***************PIE DE PAGINA CON COPYRIGHT***************-->
 <div class="footer">
@@ -695,10 +710,10 @@ function fetchData(option) {
         tablaP: '',
         tablaQ: '',
         tablaR: '', 
-        tablaS: '',
-        tablaT: '',
-        tablaU: '',
-        tablaV: '',
+        tablaS: 'INST!A4:K1001',
+        tablaT: 'INST!M4:W1001',
+        tablaU: 'GACETAS!A4:J1001',
+        tablaV: 'GACETAS!L4:U1001',
         tablaW: '',
         tablaX: '',
         tablaY: '',
