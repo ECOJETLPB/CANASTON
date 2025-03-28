@@ -510,7 +510,7 @@
             <div class="card">
                 <span class="fas fa-money-bill" style="font-size: 50px ; filter:grayscale(80%)"></span>
                 <span class="fas fa-arrow-up" style="font-size: 50px ; filter:grayscale(80%)"></span>
-                <h1>TOTAL EFECTIVO</h1>
+                <h1>TOTAL EFECTIVO DISPONIBLE</h1>
                 <p id="Efectivo-count">Cargando...</p>
             </div>
             <div class="card">
@@ -521,8 +521,13 @@
             </div>
             <div class="card">
                 <i class="fas fa-chart-line" style="font-size: 50px"></i>
-                <h1>TOTAL GANANCIAS</h1>
+                <h1>GANANCIAS CONFIRMADAS (Ya pagadas)</h1>
                 <p id="Ganancias-count">Cargando...</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-line" style="font-size: 50px"></i>
+                <h1>GANANCIAS ESPERADAS (Adeudadas)</h1>
+                <p id="Ganancias-count-est">Cargando...</p>
             </div>
         </div>
         <div id="dataM" class="tabla"></div>
@@ -869,6 +874,7 @@ const ranges = [
     { range: 'CANASTON!AM49', elementId: 'Efectivo-count' },
     { range: 'PRESTAMOS!C2', elementId: 'Prestado-count' },
     { range: 'PRESTAMOS!C3', elementId: 'Ganancias-count' },
+    { range: 'PRESTAMOS!E3', elementId: 'Ganancias-count-est' },
     { range: 'CANASTON!AM2', elementId: 'Canastones-count' }
 ];
 
